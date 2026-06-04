@@ -43,22 +43,29 @@ fun FormScreen(
                 label = { Text("Campo") },
                 modifier = Modifier.fillMaxWidth()
             )
+            
+            Spacer(modifier = Modifier.weight(1f))
 
-            Button(
-                onClick = {},
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Guardar")
-            }
-
-            OutlinedButton(
-                onClick = {},
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = MaterialTheme.colorScheme.error
-                )
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text("Eliminar")
+                Button(
+                    onClick = {},
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text("Guardar")
+                }
+
+                OutlinedButton(
+                    onClick = {},
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text("Eliminar")
+                }
             }
         }
     }
