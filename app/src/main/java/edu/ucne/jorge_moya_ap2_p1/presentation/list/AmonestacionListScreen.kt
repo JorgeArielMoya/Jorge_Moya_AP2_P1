@@ -201,7 +201,7 @@ fun AmonestacionItem(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Id: ${amonestacion.amonestacionId.toString()}",
+                    text = "Id: ${amonestacion.amonestacionId}",
                     style = MaterialTheme.typography.bodyLarge
                 )
 
@@ -216,7 +216,7 @@ fun AmonestacionItem(
                 )
 
                 Text(
-                    text = "Amonestacion: ${amonestacion.monto.toString()}",
+                    text = "Amonestacion: ${amonestacion.monto}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
