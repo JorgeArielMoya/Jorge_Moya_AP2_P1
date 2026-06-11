@@ -9,4 +9,5 @@ sealed class AmonestacionListUiEvent {
     data class Edit(val id: Int) : AmonestacionListUiEvent()
     data class ShowMessage(val message: String) : AmonestacionListUiEvent()
     data class SearchNombreChange(val value: String) : AmonestacionListUiEvent()
+    data class SearchRazonChange (val value : String) : AmonestacionListUiEvent()
 }
