@@ -20,7 +20,7 @@ class AmonestacionListViewModel @Inject constructor(
     val state: StateFlow<AmonestacionListUiState> = _state.asStateFlow()
 
     init {
-        loadEmpleado()
+        loadAmonestacion()
     }
 
     fun onEvent(event: AmonestacionListUiEvent) {
@@ -28,26 +28,30 @@ class AmonestacionListViewModel @Inject constructor(
             AmonestacionListUiEvent.ClearMessage -> _state.update { it.copy(message = null) }
             AmonestacionListUiEvent.CreateNew -> _state.update { it.copy(onNavigateToCreate = true) }
             is AmonestacionListUiEvent.Edit -> _state.update { it.copy(onNavigateToEdit = event.id) }
-            AmonestacionListUiEvent.Load -> loadEmpleado()
-            AmonestacionListUiEvent.Refresh -> loadEmpleado()
+            AmonestacionListUiEvent.Load -> loadAmonestacion()
+            AmonestacionListUiEvent.Refresh -> loadAmonestacion()
             is AmonestacionListUiEvent.ShowMessage -> _state.update { it.copy(message = event.message) }
             is AmonestacionListUiEvent.SearchNombreChange -> {
                 _state.update { it.copy(searchNombre = event.value) }
                 filtrar()
+            }
+            is AmonestacionListUiEvent.SearchRazonChange -> {
+                _state.update { it.copy(searchRazon = event.value) }
             }
         }
     }
 
     private fun filtrar() {
         val nombre = _state.value.searchNombre.trim().lowercase()
+        val razon = _state.value.searchRazon.trim().lowercase()
         val filtrados = _state.value.amonestaciones.filter { amo ->
-            (nombre.isEmpty() || amo.nombres.contains(nombre, true))
-
+            (nombre.isEmpty() || amo.nombres.contains(nombre, true)) &&
+                    (razon.isEmpty() || amo.razon.contains(razon, true))
         }
         _state.update { it.copy(amonestacionesFiltradas = filtrados) }
     }
 
-    fun loadEmpleado (){
+    fun loadAmonestacion (){
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             observeAmonestacionUseCase().collectLatest { list ->
