@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import edu.ucne.jorge_moya_ap2_p1.presentation.edit.FormScreen
-import edu.ucne.jorge_moya_ap2_p1.presentation.list.ListScreen
+import edu.ucne.jorge_moya_ap2_p1.presentation.edit.AmonestacionFormScreen
+import edu.ucne.jorge_moya_ap2_p1.presentation.list.AmonestacionListScreen
 
 @Composable
 fun AppNavHost(
@@ -17,15 +17,18 @@ fun AppNavHost(
         startDestination = Screen.ListScreen
     ) {
         composable<Screen.ListScreen> {
-            ListScreen(
+            AmonestacionListScreen(
                 onNew = {
                     navController.navigate(Screen.FormScreen(0))
+                },
+                onNavigateToEdit = {id ->
+                    navController.navigate(Screen.FormScreen(id))
                 }
             )
         }
 
         composable<Screen.FormScreen> {
-            FormScreen(
+            AmonestacionFormScreen(
                 onBack = {
                     navController.navigate(Screen.ListScreen) {
                         popUpTo(Screen.ListScreen) {
