@@ -109,6 +109,13 @@ fun AmonestacionListBody(
                                 modifier = Modifier.weight(1f),
                                 singleLine = true
                             )
+                            OutlinedTextField(
+                                value = state.searchRazon,
+                                onValueChange = { onEvent(AmonestacionListUiEvent.SearchRazonChange(it)) },
+                                label = { Text("Buscar Razon") },
+                                modifier = Modifier.weight(1f),
+                                singleLine = true
+                            )
                         }
 
                         LazyColumn(
