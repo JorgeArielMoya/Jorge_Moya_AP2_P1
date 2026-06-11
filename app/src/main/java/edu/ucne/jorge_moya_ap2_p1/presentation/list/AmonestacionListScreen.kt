@@ -223,7 +223,7 @@ fun AmonestacionItem(
                 )
 
                 Text(
-                    text = "Amonestacion: ${amonestacion.monto}",
+                    text = "Monto: ${amonestacion.monto}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
